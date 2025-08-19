@@ -1,7 +1,6 @@
 const gameBoard = (function () {
    const rows = 3;
    const columns = 3;
-   const cells = rows * columns;
    const board = [];
 
    for (let i = 0; i < rows; i++) {
