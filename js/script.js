@@ -1,3 +1,4 @@
+//get DOM cells
 const gameBoard = (function () {
    const rows = 3;
    const columns = 3;
@@ -13,6 +14,64 @@ const gameBoard = (function () {
    const placeToken = function (token, row, column) {
       if (board[row][column] !== 'O' && board[row][column] !== 'X') {
          board[row][column] = token;
+         let tokenColor = ``
+
+         if (token === 'X') {
+            tokenColor = 'green';
+         } else {
+            tokenColor = 'red';
+         }
+
+         // Get board cells in DOM
+         const a0 = document.querySelector("#a0");
+         const a1 = document.querySelector("#a1");
+         const a2 = document.querySelector("#a2");
+         const b0 = document.querySelector("#b0");
+         const b1 = document.querySelector("#b1");
+         const b2 = document.querySelector("#b2");
+         const c0 = document.querySelector("#c0");
+         const c1 = document.querySelector("#c1");
+         const c2 = document.querySelector("#c2");
+
+         //Insert token to dom and add color
+         switch (`${row}${column}`) {
+            case `20`:
+               a0.textContent = token;
+               a0.classList.add(tokenColor);
+               break;
+            case `21`:
+               a1.textContent = token;
+               a1.classList.add(tokenColor);
+               break;
+            case `22`:
+               a2.textContent = token;
+               a2.classList.add(tokenColor);
+               break;
+            case `10`:
+               b0.textContent = token;
+               b0.classList.add(tokenColor);
+               break;
+            case `11`:
+               b1.textContent = token;
+               b1.classList.add(tokenColor);
+               break;
+            case `12`:
+               b2.textContent = token;
+               b2.classList.add(tokenColor);
+               break;
+            case `00`:
+               c0.textContent = token;
+               c0.classList.add(tokenColor);
+               break;
+            case `01`:
+               c1.textContent = token;
+               c1.classList.add(tokenColor);
+               break;
+            case `02`:
+               c2.textContent = token;
+               c2.classList.add(tokenColor);
+               break;
+         }
          return 'placed'
       } else {
          console.log('Cant place that there')
@@ -73,6 +132,7 @@ const game = (function () {
          }
       }
 
+      //Check for Win
       // from bottom left corner
       if (board[2][0] === "O" || board[2][0] === "X") {
          if ((board[2][0] === board[2][1] && board[2][0] === board[2][2]) ||
@@ -116,12 +176,43 @@ const game = (function () {
       }
    }
 
+   // Check for draw
+
    return { play }
 })()
 
-game.play(2, 0);
-game.play(2, 2);
-game.play(2, 1);
-game.play(1, 2);
-game.play(1, 1);
-game.play(0, 2);
+document.querySelectorAll(".game-tile").forEach(tile => {
+   tile.addEventListener("click", (e) => {
+      let cell = e.target.getAttribute("id");
+      switch (cell) {
+         case `a0`:
+            game.play(2, 0);
+            break;
+         case `a1`:
+            game.play(2, 1);
+            break;
+         case `a2`:
+            game.play(2, 2);
+            break;
+         case `b0`:
+            game.play(1, 0);
+            break;
+         case `b1`:
+            game.play(1, 1);
+            break;
+         case `b2`:
+            game.play(1, 2);
+            break;
+         case `c0`:
+            game.play(0, 0);
+            break;
+         case `c1`:
+            game.play(0, 1);
+            break;
+         case `c2`:
+            game.play(0, 2);
+            break;
+      }
+   });
+});
+
