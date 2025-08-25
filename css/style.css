@@ -11,6 +11,14 @@ h1 {
    font-weight: 400;
 }
 
+h2 {
+   margin: 50px auto;
+   font-weight: 200;
+   font-size: 30px;
+   text-align: left;
+   width: 380px;
+}
+
 #game-container {
    margin: 0 auto;
    width: 600px;

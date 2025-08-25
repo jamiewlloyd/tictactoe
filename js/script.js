@@ -74,7 +74,6 @@ const gameBoard = (function () {
          }
          return 'placed'
       } else {
-         console.log('Cant place that there')
          return 'fail'
       }
    }
@@ -87,12 +86,9 @@ const gameBoard = (function () {
    };
 })();
 
-// Show board in console
-console.log(gameBoard.getBoard());
-
 // Factory to make players
 function createPlayer(playerNumber) {
-   let playerName = 'Player 1'
+   let playerName = `Player ${playerNumber}`
    let token = '';
    let score = 0
 
@@ -116,9 +112,17 @@ const player2 = createPlayer(2);
 //Game Logic
 const game = (function () {
    let currentPlayer = player1;
+   let board = gameBoard.getBoard();
+   const boardDisplay = document.getElementById("game-container");
+   const resultModal = document.getElementById("result-modal");
+   const resultText = document.getElementById("result-text");
+   const displayName = document.getElementById("player-name");
+
+   displayName.innerText = currentPlayer.playerName;
+   displayName.classList.add("red");
+
 
    function play(row, column) {
-      let board = gameBoard.getBoard()
       let gameState = 'playing';
       let winningToken = ''
       const playerToken = currentPlayer.getToken();
@@ -127,8 +131,14 @@ const game = (function () {
       if (result === 'placed') {
          if (currentPlayer === player1) {
             currentPlayer = player2;
+            displayName.innerText = currentPlayer.playerName;
+            displayName.classList.toggle("green");
+            displayName.classList.toggle("red");
          } else {
             currentPlayer = player1;
+            displayName.innerText = currentPlayer.playerName;
+            displayName.classList.toggle("green");
+            displayName.classList.toggle("red");
          }
       }
 
@@ -182,13 +192,44 @@ const game = (function () {
 
       // Display game result
       if (gameState === "winner") {
-         console.log(`${winningToken} is the winner!!`);
+         if (winningToken === player1.getToken()) {
+            resultText.textContent = `${player1.playerName} is the winner!!`
+         } else if (winningToken === player2.getToken()) {
+            resultText.textContent = `${player2.playerName} is the winner!!`
+         }
+         resultModal.showModal();
       } else if (gameState === "draw") {
-         console.log(`It is a draw. Better luck next time.`);
+         resultText.textContent = `It is a draw. Better luck next time.`;
+         resultModal.showModal();
       }
+
    }
 
-   return { play }
+   // Reset game after result
+   function resetGame() {
+      for (let i = 0; i < board.length; i++) {
+         // Loop through each element of the inner array
+         for (let j = 0; j < board[i].length; j++) {
+            // Change the value to an empty string
+            board[i][j] = "";
+         }
+      }
+
+      for (const childNode of boardDisplay.childNodes) {
+         // Check if the node is an Element node before trying to change its content
+         if (childNode.nodeType === Node.ELEMENT_NODE) {
+            childNode.textContent = "";
+         }
+      }
+
+      currentPlayer = player1;
+      displayName.innerText = currentPlayer.playerName;
+      displayName.classList.toggle("green");
+      displayName.classList.toggle("red");
+      resultModal.close();
+   }
+
+   return { play, resetGame }
 })()
 
 document.querySelectorAll(".game-tile").forEach(tile => {
@@ -226,3 +267,5 @@ document.querySelectorAll(".game-tile").forEach(tile => {
    });
 });
 
+const playAgain = document.getElementById("play-again");
+playAgain.addEventListener("click", game.resetGame);
