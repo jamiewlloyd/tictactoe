@@ -174,9 +174,19 @@ const game = (function () {
       if (gameState === 'winner') {
          console.log(`the winner is ${winningToken}`);
       }
-   }
 
-   // Check for draw
+      // Check for draw
+      if ((!board[0].includes("") && !board[1].includes("") && !board[2].includes("")) && (gameState === 'playing')) {
+         gameState = "draw";
+      }
+
+      // Display game result
+      if (gameState === "winner") {
+         console.log(`${winningToken} is the winner!!`);
+      } else if (gameState === "draw") {
+         console.log(`It is a draw. Better luck next time.`);
+      }
+   }
 
    return { play }
 })()
