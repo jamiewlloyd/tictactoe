@@ -116,9 +116,9 @@ const welcomeButton = document.getElementById("submit-names");
 const firstPlayerName = document.getElementById("player1");
 const secondPlayerName = document.getElementById("player2");
 
-welcome.showModal();
+welcomeButton.addEventListener("click", getNames);
 
-welcomeButton.addEventListener("click", () => {
+function getNames() {
    if (firstPlayerName.value === "") {
       firstPlayerName.focus();
    } else if (secondPlayerName.value === "") {
@@ -130,7 +130,7 @@ welcomeButton.addEventListener("click", () => {
       displayName.classList.add("red");
       welcome.close();
    }
-});
+}
 
 //Game Logic
 const game = (function () {
@@ -224,7 +224,7 @@ const game = (function () {
    }
 
    // Reset game after result
-   function resetGame() {
+   function playAgain() {
       for (let i = 0; i < board.length; i++) {
          // Loop through each element of the inner array
          for (let j = 0; j < board[i].length; j++) {
@@ -257,7 +257,14 @@ const game = (function () {
       resultModal.close();
    }
 
-   return { play, resetGame }
+   function resetGame() {
+      playAgain();
+      welcome.showModal();
+      firstPlayerName.value = "";
+      secondPlayerName.value = "";
+   }
+
+   return { play, playAgain, resetGame }
 })()
 
 document.querySelectorAll(".game-tile").forEach(tile => {
@@ -296,4 +303,9 @@ document.querySelectorAll(".game-tile").forEach(tile => {
 });
 
 const playAgain = document.getElementById("play-again");
-playAgain.addEventListener("click", game.resetGame);
+playAgain.addEventListener("click", game.playAgain);
+
+const resetGame = document.getElementById("reset");
+resetGame.addEventListener("click", game.resetGame);
+
+welcome.showModal();

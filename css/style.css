@@ -52,7 +52,7 @@ h2 {
 }
 
 .green {
-   color: rgb(76, 147, 77);
+   color: #4c934d;
 }
 
 #modal-content {
@@ -105,6 +105,6 @@ h2 {
    margin-top: 30px;
 }
 
-#play-again:focus {
-   outline: none;
+.modal-button:focus {
+   outline: 1px solid #b3d2ff;
 }
