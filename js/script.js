@@ -219,13 +219,23 @@ const game = (function () {
          // Check if the node is an Element node before trying to change its content
          if (childNode.nodeType === Node.ELEMENT_NODE) {
             childNode.textContent = "";
+            if (childNode.classList.contains("green")) {
+               childNode.classList.remove("green");
+            }
+            if (childNode.classList.contains("red")) {
+               childNode.classList.remove("red");
+            }
          }
       }
 
       currentPlayer = player1;
       displayName.innerText = currentPlayer.playerName;
-      displayName.classList.toggle("green");
-      displayName.classList.toggle("red");
+      if (displayName.classList.contains("green")) {
+         displayName.classList.remove("green");
+      }
+      if (!displayName.classList.contains("red")) {
+         displayName.classList.add("red");
+      }
       resultModal.close();
    }
 
