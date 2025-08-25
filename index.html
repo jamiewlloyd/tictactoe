@@ -3,33 +3,37 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="description goes here">
+    <meta name="description" content="TIC TAC TOE game for two players">
     <meta name="author" content="Jamie">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Dirt&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <title>Title</title>
+    <title>TIC TAC TOE</title>
 </head>
 
 <body>
-    <h1>TIC TAC TOE</h1>
-    <div id="game-container">
-        <div id="c0" class="game-tile"></div>
-        <div id="c1" class="game-tile"></div>
-        <div id="c2" class="game-tile"></div>
-        <div id="b0" class="game-tile"></div>
-        <div id="b1" class="game-tile"></div>
-        <div id="b2" class="game-tile"></div>
-        <div id="a0" class="game-tile"></div>
-        <div id="a1" class="game-tile"></div>
-        <div id="a2" class="game-tile"></div>
+    <div id="main">
+        <h1>TIC TAC TOE</h1>
+        <div id="game-container">
+            <div id="c0" class="game-tile"></div>
+            <div id="c1" class="game-tile"></div>
+            <div id="c2" class="game-tile"></div>
+            <div id="b0" class="game-tile"></div>
+            <div id="b1" class="game-tile"></div>
+            <div id="b2" class="game-tile"></div>
+            <div id="a0" class="game-tile"></div>
+            <div id="a1" class="game-tile"></div>
+            <div id="a2" class="game-tile"></div>
+        </div>
+        <h2 id="current-player">Current Player: <span id="player-name"></span></h2>
     </div>
-    <h2 id="current-player">Current Player: <span id="player-name"></span></h2>
     <dialog id="result-modal">
-        <h2 id="result-text">Player 1 is the winner</h2>
-        <button id="play-again">Play Again</button>
+        <div id="modal-content">
+            <h2 id="result-text">Game in progress...</h2>
+            <button id="play-again">Play Again</button>
+        </div>
     </dialog>
     <script type="text/javascript" src="js/script.js"></script>
 </body>

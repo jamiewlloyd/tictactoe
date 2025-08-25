@@ -1,18 +1,23 @@
 body {
-   background-color: rgb(255, 243, 228);
+   background-color: #e6f0ff;
    font-family: "Rubik Dirt", system-ui;
    font-weight: 400;
+   margin: 0;
+   height: 100vh;
+   display: grid;
+   align-items: center;
+   justify-items: center;
 }
 
 h1 {
-   margin: 50px auto;
+   margin: 20px auto;
    text-align: center;
-   font-size: 100px;
+   font-size: 97px;
    font-weight: 400;
 }
 
 h2 {
-   margin: 50px auto;
+   margin: 30px auto;
    font-weight: 200;
    font-size: 30px;
    text-align: left;
@@ -37,9 +42,9 @@ h2 {
    display: grid;
    justify-items: center;
    align-items: center;
-   background-color: white;
-   border-radius: 20px;
-   font-size: 80px;
+   background-color: rgba(255, 255, 255, 0.7);
+   border-radius: 10px;
+   font-size: 120px;
 }
 
 .red {
@@ -48,4 +53,36 @@ h2 {
 
 .green {
    color: rgb(76, 147, 77);
+}
+
+#modal-content {
+   display: grid;
+   justify-items: center;
+}
+
+#result-modal {
+   background-color: rgb(255, 255, 255);
+   border: none;
+   border-radius: 10px;
+}
+
+#result-text {
+   margin: 30px auto 20px auto;
+   text-align: center;
+}
+
+#play-again {
+   width: 150px;
+   height: 50px;
+   font-size: 20px;
+   margin: 10px;
+   font-family: "Rubik Dirt", system-ui;
+   border: none;
+   border-radius: 10px;
+   background-color: rgb(185, 233, 255);
+   cursor: pointer;
+}
+
+#play-again:focus {
+   outline: none;
 }
