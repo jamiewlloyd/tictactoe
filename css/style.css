@@ -60,7 +60,7 @@ h2 {
    justify-items: center;
 }
 
-#result-modal {
+.modal {
    background-color: rgb(255, 255, 255);
    border: none;
    border-radius: 10px;
@@ -71,7 +71,11 @@ h2 {
    text-align: center;
 }
 
-#play-again {
+#welcome-text {
+   text-align: center;
+}
+
+.modal-button {
    width: 150px;
    height: 50px;
    font-size: 20px;
@@ -79,8 +83,26 @@ h2 {
    font-family: "Rubik Dirt", system-ui;
    border: none;
    border-radius: 10px;
-   background-color: rgb(185, 233, 255);
+   background-color: #b3d2ff;
    cursor: pointer;
+}
+
+#modal-content input {
+   margin: 10px 0;
+   font-family: "Rubik Dirt", system-ui;
+   font-size: 20px;
+   padding: 7px 10px;
+   border: 0px;
+   background-color: #e6f0ff;
+   border-radius: 10px;
+}
+
+#modal-content input:focus {
+   outline: 1px solid #b3d2ff;
+}
+
+#submit-names {
+   margin-top: 30px;
 }
 
 #play-again:focus {

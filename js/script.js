@@ -88,7 +88,7 @@ const gameBoard = (function () {
 
 // Factory to make players
 function createPlayer(playerNumber) {
-   let playerName = `Player ${playerNumber}`
+   let playerName = ``
    let token = '';
    let score = 0
 
@@ -109,6 +109,29 @@ function createPlayer(playerNumber) {
 const player1 = createPlayer(1);
 const player2 = createPlayer(2);
 
+//Get player names from input and use in UI
+const displayName = document.getElementById("player-name");
+const welcome = document.getElementById("welcome-modal");
+const welcomeButton = document.getElementById("submit-names");
+const firstPlayerName = document.getElementById("player1");
+const secondPlayerName = document.getElementById("player2");
+
+welcome.showModal();
+
+welcomeButton.addEventListener("click", () => {
+   if (firstPlayerName.value === "") {
+      firstPlayerName.focus();
+   } else if (secondPlayerName.value === "") {
+      secondPlayerName.focus();
+   } else {
+      player1.playerName = firstPlayerName.value;
+      player2.playerName = secondPlayerName.value;
+      displayName.innerText = player1.playerName;
+      displayName.classList.add("red");
+      welcome.close();
+   }
+});
+
 //Game Logic
 const game = (function () {
    let currentPlayer = player1;
@@ -116,11 +139,6 @@ const game = (function () {
    const boardDisplay = document.getElementById("game-container");
    const resultModal = document.getElementById("result-modal");
    const resultText = document.getElementById("result-text");
-   const displayName = document.getElementById("player-name");
-
-   displayName.innerText = currentPlayer.playerName;
-   displayName.classList.add("red");
-
 
    function play(row, column) {
       let gameState = 'playing';

@@ -32,10 +32,19 @@
         </div>
         <h2 id="current-player">Current Player: <span id="player-name"></span></h2>
     </div>
-    <dialog id="result-modal">
+    <dialog id="result-modal" class="modal">
         <div id="modal-content">
             <h2 id="result-text">Game in progress...</h2>
-            <button id="play-again">Play Again</button>
+            <button id="play-again" class="modal-button">Play Again</button>
+            <button id="reset">Reset</button>
+        </div>
+    </dialog>
+    <dialog id="welcome-modal" class="modal">
+        <div id="modal-content">
+            <h2 id="welcome-text">🤗 Welcome 🤗<br> Please enter player names</h2>
+            <input type="text" name="player1" id="player1" placeholder="Player 1" class="red">
+            <input type="text" name="player2" id="player2" placeholder="Player 2" class="green">
+            <button id="submit-names" class="modal-button">Play</button>
         </div>
     </dialog>
     <script type="text/javascript" src="js/script.js"></script>
